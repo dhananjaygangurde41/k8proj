@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: k8proj
+spec:
+    selector:
+        matchLabels:
+            app: k8proj
+    template:
+        metadata:
+            labels:
+                app: k8proj
+        spec:
+            containers:
+                - name: k8proj-main
+                  image: docker.io/djay1720/k8proj:latest
+                  ports:
+                   - containerPort: 8000
