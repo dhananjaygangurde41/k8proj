@@ -21,7 +21,7 @@ pipeline {
       steps {
         echo "Logging in to Docker Hub..."
         // 🔧 FIX: Added missing quote and corrected syntax
-        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        sh 'docker login -u djay1720 -p Nashikmay@17'
       }
     }
 
