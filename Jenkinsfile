@@ -1,5 +1,5 @@
 pipeline {
-  agent { label 'ubuntu-agent' }
+  agent { label 'docker_host' }
 
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
@@ -20,8 +20,7 @@ pipeline {
     stage('Login') {
       steps {
         echo "Logging in to Docker Hub..."
-        // 🔧 FIX: Added missing quote and corrected syntax
-        sh 'docker login -u djay1720 -p '
+        sh 'docker login -u djay1720 -p Nashikmay@17'
       }
     }
 
@@ -35,8 +34,10 @@ pipeline {
 
   post {
     always {
-      echo "Cleaning up Docker login session..."
-      sh 'docker logout'
+      node('docker_host') {
+        echo "Cleaning up Docker login session..."
+        sh 'docker logout || true'
+      }
     }
   }
 }
